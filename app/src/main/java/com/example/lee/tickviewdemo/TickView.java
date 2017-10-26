@@ -80,6 +80,8 @@ public class TickView extends View {
 
     private PathMeasure pathMeasure;
 
+    private onTickProgressListener listener;
+
 
     private static final int ANIMATOR = 001;
     private Handler handler = new Handler() {
@@ -102,6 +104,10 @@ public class TickView extends View {
         this.currentProgress = currentProgress;
 
         invalidate();
+    }
+
+    public void setListener(onTickProgressListener listener) {
+        this.listener = listener;
     }
 
     public float getWidth_line() {
@@ -203,6 +209,10 @@ public class TickView extends View {
 
         if (currentProgress < 100) {
             radius_success = radius;
+
+            if (listener != null) {
+                listener.progress(currentProgress);
+            }
             drawUnStart(canvas);
             drawLoading(canvas);
         }
@@ -227,6 +237,10 @@ public class TickView extends View {
         } else {
             white_paint.setStyle(Paint.Style.STROKE);
             canvas.drawPath(linePath, white_paint);
+
+            if (listener != null) {
+                listener.progressEnd();
+            }
 
             handler.removeMessages(ANIMATOR);
         }
@@ -292,5 +306,14 @@ public class TickView extends View {
         height = h;
 
         super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+
+    private interface onTickProgressListener {
+        //当前进度
+        void progress(int progress);
+
+        //结束
+        void progressEnd();
     }
 }
