@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <declare-styleable name="TickView">
+
+        <attr name="width_line" format="dimension"></attr>
+
+        <attr name="color_unselect" format="color"></attr>
+
+        <attr name="color_loading" format="color"></attr>
+
+        <attr name="color_load_success" format="color"></attr>
+
+        <attr name="radius" format="dimension"></attr>
+
+        <attr name="druation_loading" format="integer"></attr>
+    </declare-styleable>
+
+</resources>
